@@ -10,14 +10,13 @@ namespace Domain
     {
         #region Properties
         public FaceValue FaceValue { get; }
-
-        public Suit Suit { get; set; }
+        public Suit Suit { get; }
         #endregion
 
         #region Constructors
         public Card(Suit suit, FaceValue faceValue)
         {
-            Suit = Suit;
+            Suit = suit;
             FaceValue = faceValue;
         } 
         #endregion

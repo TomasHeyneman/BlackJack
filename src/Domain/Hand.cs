@@ -10,7 +10,7 @@ namespace Domain
     {
 
         #region Fields
-        private readonly IList<BlackJackCard> _cards; 
+        private readonly IList<BlackJackCard> _cards;
         #endregion
 
         #region Properties
@@ -32,18 +32,35 @@ namespace Domain
         #region Methods
         public void AddCard(BlackJackCard card)
         {
-            throw new NotImplementedException();
+            if(card != null)
+                _cards.Add(card);
         }
 
         public void TurnAllCardsFaceUp()
         {
-            throw new NotImplementedException();
+              
+            foreach (BlackJackCard card in _cards)
+                if(!card.FaceUp)
+                    card.TurnCard();
         }
 
         public int CalculateValue()
         {
-            throw new NotImplementedException();
-        } 
+            int sum = 0;
+            bool hasAce = false;
+
+            foreach (var card in Cards)
+            {
+                sum += card.Value;
+                if (card.FaceUp && card.FaceValue == FaceValue.Ace)
+                    hasAce = true;
+            }
+
+            if (hasAce && (sum + 10) <= 21)
+                sum += 10;
+
+            return sum;
+        }
         #endregion
 
     }
